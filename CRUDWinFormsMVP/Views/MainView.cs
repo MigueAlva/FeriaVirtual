@@ -15,7 +15,12 @@ namespace CRUDWinFormsMVP.Views
         public MainView()
         {
             InitializeComponent();
-            btnClients.Click += delegate { ShowClientView?.Invoke(this, EventArgs.Empty); };
+            btnClients.Click += delegate 
+            { 
+                ShowClientView?.Invoke(this, EventArgs.Empty);
+                
+            };
+            
         }
 
         public event EventHandler ShowClientView;
@@ -35,6 +40,8 @@ namespace CRUDWinFormsMVP.Views
                 instance = new MainView(); 
                 instance.FormBorderStyle = FormBorderStyle.None;
                 instance.Dock = DockStyle.Fill;
+                
+                
             }
             else
             {
@@ -43,6 +50,35 @@ namespace CRUDWinFormsMVP.Views
                 instance.BringToFront();
             }
             return instance;
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
+            else if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
         }
     }
 }

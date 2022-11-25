@@ -1,4 +1,5 @@
 ﻿using CRUDWinFormsMVP.Models;
+using CRUDWinFormsMVP._Repositories;
 using CRUDWinFormsMVP.Views;
 using System;
 using System.Collections.Generic;
@@ -64,7 +65,7 @@ namespace CRUDWinFormsMVP.Presenters
         {
             var client = (ClientModel)clientsBindingSource.Current;
             view.UserID = client.UserID.ToString();
-            view.Password = client.Password;
+            //view.Password = client.Password;
             view.Rut = client.Rut;
             view.ClientName = client.ClientName;
             if (client.ClientType == "2")
@@ -91,8 +92,9 @@ namespace CRUDWinFormsMVP.Presenters
         private void SaveClient(object sender, EventArgs e)
         {
             var model = new ClientModel();
+            
             model.UserID = Convert.ToInt32(view.UserID);
-            model.Password = view.Password;
+            model.Password = "hola mundo";
             model.Rut = view.Rut;
             model.ClientName = view.ClientName;
             model.ClientType = view.ClientType;
@@ -132,7 +134,7 @@ namespace CRUDWinFormsMVP.Presenters
         private void CleanviewFields()
         {
             view.UserID = "0";
-            view.Password = "";
+            //view.Password = "";
             view.Rut = "0";
             view.ClientName = "";
             view.ClientType = "";

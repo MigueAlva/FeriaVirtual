@@ -48,29 +48,50 @@ namespace CRUDWinFormsMVP._Repositories
             using (var connection = new OracleConnection(oraconnectionString))
             using (var command = new OracleCommand())
             {
+                
                 string user = value1;
                 string password = value2;
-                connection.Open();
-                
+                connection.Open();             
                 command.Connection = connection;
-                //command.Parameters.AddWithValue("user", value1);
-                //command.Parameters.AddWithValue("pass", value2);
-                //command.CommandText = "SELECT * FROM USERS WHERE EMAIL = 'user' and PASSWORD = 'pass'";
-                //command.Parameters.Add("@user", OracleType.VarChar).Value = user;
-                //command.Parameters.Add("@pass", OracleType.VarChar).Value = password;
-                command.CommandText = "SELECT * FROM USERS WHERE email = 'miguel@gmail.com' and PASSWORD = '183973'";
+                //command.Parameters.AddWithValue("user",user);
+                //command.Parameters.AddWithValue("pass",password);
 
                 
-                command.CommandType = CommandType.Text;
-                OracleDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
+                //command.Parameters.Add("pass", OracleType.VarChar).Value = password;
+                //command.CommandText = "SELECT * FROM USERS WHERE EMAIL='" + user + "' and PASSWORD='" + password +"';";
+
+                //command.CommandText = "SELECT * FROM USERS WHERE email = 'miguel@gmail.com' and PASSWORD = '183973'";
+                //MessageBox.Show(user + "\n" + password + "\n" + command.CommandText + "\n" + command.CommandType);
+
+                command.CommandText = "SELECT PASSWORD FROM USERS WHERE EMAIL='"+user+"'";
+                //command.Parameters.AddWithValue("user", user);
+                //command.Parameters.Add("@user", OracleType.VarChar).Value = user;
+                var reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    //MessageBox.Show("Inicio de sesión exitoso");
-                    return true;
-                }
-                else
-                    return false; //MessageBox.Show("Intente nuevamente");
+                    var result = BCrypt.Net.BCrypt.Verify(password, reader[0].ToString());
+                    return result;
+                }              
+
+                //command.CommandType = CommandType.Text;
+                
+                //return true;
+                //using (OracleDataReader reader = command.ExecuteReader())
+                //{
+                //    //bool validPass = BCrypt.Net.BCrypt.Verify(password, user.Ha);
+                //    if (reader.HasRows)
+                //    {
+                //        if()    
+                //        //MessageBox.Show("Inicio de sesión exitoso");
+                //        return true;
+                //    }
+                //    else
+                //        return false; //MessageBox.Show("Intente nuevamente");
+                //}
+
+                
             }
+            return false;
         }
     }
 }

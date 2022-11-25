@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OracleClient;
 using System.Windows.Forms;
+using BCrypt.Net;
 
 namespace CRUDWinFormsMVP._Repositories
 {
@@ -19,30 +20,34 @@ namespace CRUDWinFormsMVP._Repositories
         public void Add(ClientModel ClientModel)
         {
             //ADD_USER
-            var randomNumber = new Random().Next(100000, 999999);
+            var randomNumber = new Random().Next(10000000, 99999999);
+            var mySalt = BCrypt.Net.BCrypt.GenerateSalt(10);
+            MessageBox.Show(mySalt);
+
+            var myHash = BCrypt.Net.BCrypt.HashPassword(randomNumber.ToString(), mySalt);
+            MessageBox.Show(myHash);
+            MessageBox.Show(myHash.Length.ToString());
+
 
             using (var connection = new OracleConnection(connectionString))
             using (var command = new OracleCommand("ADD_USER", connection))
-            {
+            {              
                 connection.Open();
-                command.CommandType = CommandType.StoredProcedure;
+                command.CommandType = CommandType.StoredProcedure;             
                 command.Parameters.Add("p_name", OracleType.VarChar).Value = ClientModel.ClientName;
                 command.Parameters.Add("p_email", OracleType.VarChar).Value = ClientModel.Email;
-                command.Parameters.Add("p_password", OracleType.VarChar).Value = randomNumber;
-
-                if (ClientModel.ClientType == "Nacional")
+                command.Parameters.Add("p_password", OracleType.VarChar).Value = myHash.ToString();
+                if (ClientModel.ClientType == "Nacional" || ClientModel.ClientType == "nacional")
                 {
                     command.Parameters.Add("p_role_id", OracleType.Number).Value = 2;
                 }
-                else if (ClientModel.ClientType == "Internacional")
+                else if (ClientModel.ClientType == "Internacional" || ClientModel.ClientType == "internacional")
                 {
                     command.Parameters.Add("p_role_id", OracleType.Number).Value = 3;
                 }
                 command.Parameters.Add("p_data", OracleType.Cursor).Direction = ParameterDirection.Output;
                 command.ExecuteNonQuery();
-
             }
-
             switch (ClientModel.ClientType)
             {
                 case "Nacional":
@@ -56,7 +61,7 @@ namespace CRUDWinFormsMVP._Repositories
                             command.CommandType = CommandType.StoredProcedure;
                             command.Parameters.Add("p_name", OracleType.VarChar).Value = ClientModel.ClientName;
                             command.Parameters.Add("p_email", OracleType.VarChar).Value = ClientModel.Email;
-                            command.Parameters.Add("p_password", OracleType.VarChar).Value = randomNumber; //se repetería la misma contraseña que en el add?
+                            command.Parameters.Add("p_password", OracleType.VarChar).Value = myHash;
                             command.Parameters.Add("p_role_id", OracleType.Number).Value = 2;
                             command.Parameters.Add("p_rut", OracleType.VarChar).Value = ClientModel.Rut;
                             command.Parameters.Add("p_business_name", OracleType.VarChar).Value = ClientModel.BusinessName;
@@ -87,7 +92,7 @@ namespace CRUDWinFormsMVP._Repositories
                             command.CommandType = CommandType.StoredProcedure;
                             command.Parameters.Add("p_name", OracleType.VarChar).Value = ClientModel.ClientName;
                             command.Parameters.Add("p_email", OracleType.VarChar).Value = ClientModel.Email;
-                            command.Parameters.Add("p_password", OracleType.VarChar).Value = randomNumber;
+                            command.Parameters.Add("p_password", OracleType.VarChar).Value = myHash;
                             command.Parameters.Add("p_role_id", OracleType.Number).Value = 3;
                             command.Parameters.Add("p_rut", OracleType.VarChar).Value = ClientModel.Rut;
                             command.Parameters.Add("p_business_name", OracleType.VarChar).Value = ClientModel.BusinessName;

@@ -7,7 +7,7 @@ namespace CRUDWinFormsMVP.Views
     {
         //Properties - Fields
         string UserID { get; set; }
-        string Password { get; set; }
+        //string Password { get; set; }
         string Rut { get; set; }
         string ClientName { get; set; }
         string ClientType { get; set; }

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Drawing;
+using System.Runtime.InteropServices;
+
 
 namespace CRUDWinFormsMVP.Views
 {
@@ -16,7 +19,7 @@ namespace CRUDWinFormsMVP.Views
             InitializeComponent();
             AssociateAndRaiseViewEvents(); //Asocia y genera los eventos de la vista
             tabControl1.TabPages.Remove(tabPageClientDetail);
-            btnClose.Click += delegate { this.Close(); };
+            btnClose.Click += delegate { this.Close(); };                   
         }
 
         private void AssociateAndRaiseViewEvents()
@@ -98,11 +101,11 @@ namespace CRUDWinFormsMVP.Views
             get { return txtUserID.Text; }
             set { txtUserID.Text = value; }
         }
-        public string Password
-        {
-            get { return txtPassword.Text; }
-            set { txtPassword.Text = value; }
-        }
+        //public string Password
+        //{
+        //    get { return txtPassword.Text; }
+        //    set { txtPassword.Text = value; }
+        //}
         public string Rut
         {
             get { return txtRut.Text; }
@@ -177,7 +180,6 @@ namespace CRUDWinFormsMVP.Views
                     MessageBox.Show("Ingrese el dato a buscarr", "Atención - Feria Virtual", MessageBoxButtons.RetryCancel,
                         MessageBoxIcon.Exclamation);
                 }
-
             }
         }
         public bool IsEdit
@@ -208,7 +210,6 @@ namespace CRUDWinFormsMVP.Views
         {
             dgvClient.DataSource = clientList;
         }
-
         //Singleton pattern (Open a single form instance)
         private static ClientView instance;
         public static ClientView GetInstace(Form parentContainer)
@@ -229,6 +230,11 @@ namespace CRUDWinFormsMVP.Views
             return instance;
         }
 
+        //private void ClientView_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    ReleaseCapture();
+        //    SendMessage(this.Handle, 0x112, 0xf012, 0);
+        //}
     }
 }
 

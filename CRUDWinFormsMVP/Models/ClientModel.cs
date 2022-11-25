@@ -71,7 +71,7 @@ namespace CRUDWinFormsMVP.Models
         }
         [DisplayName("Region")]
         [Required(ErrorMessage = "La región es requerida")]
-        [RegularExpression("^([a-zA-Z]+$)", ErrorMessage = "La región solo acepta caracteres")]
+        [RegularExpression("^([a-zA-Z ]+$)", ErrorMessage = "La región solo acepta caracteres")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "La region debe tener entre {2} a {1} caracteres")]
         public string Region
         {
@@ -81,7 +81,7 @@ namespace CRUDWinFormsMVP.Models
 
         [DisplayName("Comuna")]
         [Required(ErrorMessage = "La comuna es requerida")]
-        [RegularExpression("^([a-zA-Z]+$)", ErrorMessage = "La comuna solo acepta caracteres")]
+        [RegularExpression("^([a-zA-Z ]+$)", ErrorMessage = "La comuna solo acepta caracteres")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "La comuna debe tener entre {2} a {1} caracteres")]
         public string Commune
         {
@@ -101,7 +101,7 @@ namespace CRUDWinFormsMVP.Models
 
         [DisplayName("Razón social")]
         [Required(ErrorMessage = "La razón social de la empresa es requerido")]
-        [RegularExpression("^([a-zA-Z]+$)", ErrorMessage = "La razón social solo acepta caracteres")]
+        [RegularExpression("^([a-zA-Z ]+$)", ErrorMessage = "La razón social solo acepta caracteres")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "La razón social debe tener entre {2} a {1} caracteres")]
         public string BusinessName
         {

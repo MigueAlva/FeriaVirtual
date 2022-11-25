@@ -20,6 +20,7 @@ namespace CRUDWinFormsMVP.Views
             btnLogin.Click += delegate
             {
                 LoginUser?.Invoke(this, EventArgs.Empty);
+                
             };
         }
 
@@ -34,7 +35,10 @@ namespace CRUDWinFormsMVP.Views
 
         private void btnminimizar_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
         }
         private void txtuser_Enter(object sender, EventArgs e)
         {
