@@ -1,11 +1,13 @@
 ﻿using CRUDWinFormsMVP.Models;
-//using Devart.Data.Oracle;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OracleClient;
 using System.Windows.Forms;
+using System.Net.Mail;
+using System.Net;
 using BCrypt.Net;
+using System.ComponentModel.DataAnnotations;
 
 namespace CRUDWinFormsMVP._Repositories
 {
@@ -22,37 +24,31 @@ namespace CRUDWinFormsMVP._Repositories
             //ADD_USER
             var randomNumber = new Random().Next(10000000, 99999999);
             var mySalt = BCrypt.Net.BCrypt.GenerateSalt(10);
-            MessageBox.Show(mySalt);
-
             var myHash = BCrypt.Net.BCrypt.HashPassword(randomNumber.ToString(), mySalt);
-            MessageBox.Show(myHash);
-            MessageBox.Show(myHash.Length.ToString());
 
-
-            using (var connection = new OracleConnection(connectionString))
-            using (var command = new OracleCommand("ADD_USER", connection))
-            {              
-                connection.Open();
-                command.CommandType = CommandType.StoredProcedure;             
-                command.Parameters.Add("p_name", OracleType.VarChar).Value = ClientModel.ClientName;
-                command.Parameters.Add("p_email", OracleType.VarChar).Value = ClientModel.Email;
-                command.Parameters.Add("p_password", OracleType.VarChar).Value = myHash.ToString();
-                if (ClientModel.ClientType == "Nacional" || ClientModel.ClientType == "nacional")
-                {
-                    command.Parameters.Add("p_role_id", OracleType.Number).Value = 2;
-                }
-                else if (ClientModel.ClientType == "Internacional" || ClientModel.ClientType == "internacional")
-                {
-                    command.Parameters.Add("p_role_id", OracleType.Number).Value = 3;
-                }
-                command.Parameters.Add("p_data", OracleType.Cursor).Direction = ParameterDirection.Output;
-                command.ExecuteNonQuery();
-            }
-            switch (ClientModel.ClientType)
+            //using (var connection = new OracleConnection(connectionString))
+            //using (var command = new OracleCommand("ADD_USER", connection))
+            //{              
+            //    connection.Open();
+            //    command.CommandType = CommandType.StoredProcedure;             
+            //    command.Parameters.Add("p_name", OracleType.VarChar).Value = ClientModel.ClientName;
+            //    command.Parameters.Add("p_email", OracleType.VarChar).Value = ClientModel.Email;
+            //    command.Parameters.Add("p_password", OracleType.VarChar).Value = myHash.ToString();
+                //if (ClientModel.ClientType == "Nacional" || ClientModel.ClientType == "nacional")
+                //{
+                //    command.Parameters.Add("p_role_id", OracleType.Number).Value = 2;
+                //}
+                //else if (ClientModel.ClientType == "Internacional" || ClientModel.ClientType == "internacional")
+                //{
+                //    command.Parameters.Add("p_role_id", OracleType.Number).Value = 3;
+                //}
+                //command.Parameters.Add("p_data", OracleType.Cursor).Direction = ParameterDirection.Output;
+                //command.ExecuteNonQuery();
+            //}
+            switch (ClientModel.ClientType) 
             {
                 case "Nacional":
                     {
-
                         //ADD_LOCAL_USER
                         using (var connection = new OracleConnection(connectionString))
                         using (var command = new OracleCommand("ADD_LOCAL_USER", connection))
@@ -71,13 +67,12 @@ namespace CRUDWinFormsMVP._Repositories
                             command.Parameters.Add("p_observations", OracleType.VarChar).Value = ClientModel.Observations;
                             command.Parameters.Add("p_direction_url", OracleType.VarChar).Value = ClientModel.Url;
                             command.Parameters.Add("p_phone", OracleType.VarChar).Value = ClientModel.Phone;
-                            DateTime fecha = DateTime.Now.AddYears(1);
-                            command.Parameters.Add("p_contract_expired_at", OracleType.DateTime).Value = fecha;
+                            command.Parameters.Add("p_contract_expired_at", OracleType.DateTime).Value = ClientModel.ContractExpiredAt;
                             command.Parameters.Add("p_data", OracleType.Cursor).Direction = ParameterDirection.Output;
                             command.ExecuteNonQuery();
                             MessageBox.Show("Cliente nacional registrado");
+                            SendPassword(ClientModel.Email, ClientModel.ClientName, randomNumber.ToString());
                         }
-
                         break;
                     }
 
@@ -103,16 +98,48 @@ namespace CRUDWinFormsMVP._Repositories
                             command.Parameters.Add("p_observations", OracleType.VarChar).Value = ClientModel.Observations;
                             command.Parameters.Add("p_direction_url", OracleType.VarChar).Value = ClientModel.Url;
                             command.Parameters.Add("p_phone", OracleType.VarChar).Value = ClientModel.Phone;
-                            DateTime fecha = DateTime.Now.AddYears(1);
-                            command.Parameters.Add("p_contract_expired_at", OracleType.DateTime).Value = fecha;
+                            command.Parameters.Add("p_contract_expired_at", OracleType.DateTime).Value = ClientModel.ContractExpiredAt;
                             command.Parameters.Add("p_data", OracleType.Cursor).Direction = ParameterDirection.Output;
                             command.ExecuteNonQuery();
                             MessageBox.Show("Cliente internacional registrado");
+                            SendPassword(ClientModel.Email, ClientModel.ClientName, randomNumber.ToString());
                         }
-
                         break;
-                    }
+                    }                  
             }
+        }
+        public void SendPassword(string email, string user, string password)
+        {
+            MailMessage mmsg = new MailMessage();
+            mmsg.To.Add(email);
+            mmsg.Subject = "Envío de contraseña";
+            mmsg.SubjectEncoding = System.Text.Encoding.UTF8;
+
+            mmsg.Body = "Estimado "+user+" está es la contraseña generada automáticamente: "+password +" \n " + email;
+            mmsg.BodyEncoding = System.Text.Encoding.UTF8;
+            mmsg.IsBodyHtml = true;
+            mmsg.From = new MailAddress("feriavirtual.fv@gmail.com");
+
+            SmtpClient client = new SmtpClient();
+
+            client.Credentials = new NetworkCredential("e8ef8dd4ff1d43", "4ea6074d1e94e4");
+
+            client.Port = 2525;
+            client.EnableSsl = false;
+            client.Host = "smtp.mailtrap.io";
+            try
+            {
+                client.Send(mmsg);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error al enviar el correo \n"+ex);
+            }                 
+        }
+        public IEnumerable<ClientModel> GetAll()
+        {
+            var clientList = new List<ClientModel>();
 
         }
         public void Delete(ClientModel ClientModel)
@@ -124,13 +151,13 @@ namespace CRUDWinFormsMVP._Repositories
                 command.Connection = connection;
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("p_id", OracleType.Number).Value = ClientModel.UserID;
-                if (ClientModel.Status == 0)
+                if (ClientModel.Status == "Deshabilitado")
                 {
                     command.Parameters.Add("p_status", OracleType.Number).Value = 1;
                     MessageBox.Show("Cliente activado exitosamente","Feria virtual", MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
                 }
-                else if (ClientModel.Status == 1)
+                else if (ClientModel.Status == "Habilitado")
                 {
                     command.Parameters.Add("p_status", OracleType.Number).Value = 0;
                     MessageBox.Show("Cliente deshabilitado exitosamente","Feria virtual", MessageBoxButtons.OK,
@@ -143,16 +170,16 @@ namespace CRUDWinFormsMVP._Repositories
         public void Edit(ClientModel ClientModel)
         {
             //EDIT_USER
-            using (var connection = new OracleConnection(connectionString))
-            using (var command = new OracleCommand("EDIT_USER", connection))
-            {
-                connection.Open();
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("p_id", OracleType.Number).Value = ClientModel.UserID;
-                command.Parameters.Add("p_name", OracleType.VarChar).Value = ClientModel.ClientName;
-                command.Parameters.Add("p_data", OracleType.Cursor).Direction = ParameterDirection.Output;
-                command.ExecuteNonQuery();
-            }
+            //using (var connection = new OracleConnection(connectionString))
+            //using (var command = new OracleCommand("EDIT_USER", connection))
+            //{
+            //    connection.Open();
+            //    command.CommandType = CommandType.StoredProcedure;
+            //    command.Parameters.Add("p_id", OracleType.Number).Value = ClientModel.UserID;
+            //    command.Parameters.Add("p_name", OracleType.VarChar).Value = ClientModel.ClientName;
+            //    command.Parameters.Add("p_data", OracleType.Cursor).Direction = ParameterDirection.Output;
+            //    command.ExecuteNonQuery();
+            //}
 
             switch (ClientModel.ClientType)
             {
@@ -174,8 +201,7 @@ namespace CRUDWinFormsMVP._Repositories
                             command.Parameters.Add("p_observations", OracleType.VarChar).Value = ClientModel.Observations;
                             command.Parameters.Add("p_direction_url", OracleType.VarChar).Value = ClientModel.Url;
                             command.Parameters.Add("p_phone", OracleType.VarChar).Value = ClientModel.Phone;
-                            DateTime fecha = DateTime.Now.AddYears(1);
-                            command.Parameters.Add("p_contract_expired_at", OracleType.DateTime).Value = fecha;
+                            command.Parameters.Add("p_contract_expired_at", OracleType.DateTime).Value = ClientModel.ContractExpiredAt;
                             command.Parameters.Add("p_data", OracleType.Cursor).Direction = ParameterDirection.Output;
                             command.ExecuteNonQuery();
                             MessageBox.Show("Cliente nacional modificado exitosamente", "Feria virtual", MessageBoxButtons.OK,
@@ -202,8 +228,7 @@ namespace CRUDWinFormsMVP._Repositories
                             command.Parameters.Add("p_observations", OracleType.VarChar).Value = ClientModel.Observations;
                             command.Parameters.Add("p_direction_url", OracleType.VarChar).Value = ClientModel.Url;
                             command.Parameters.Add("p_phone", OracleType.VarChar).Value = ClientModel.Phone;
-                            DateTime fecha = DateTime.Now.AddYears(1);
-                            command.Parameters.Add("p_contract_expired_at", OracleType.DateTime).Value = fecha;
+                            command.Parameters.Add("p_contract_expired_at", OracleType.DateTime).Value = ClientModel.ContractExpiredAt;
                             command.Parameters.Add("p_data", OracleType.Cursor).Direction = ParameterDirection.Output;
                             command.ExecuteNonQuery();
                             MessageBox.Show("Cliente internacional modificado exitosamente", "Feria virtual", MessageBoxButtons.OK,
@@ -224,41 +249,77 @@ namespace CRUDWinFormsMVP._Repositories
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("p_email", OracleType.VarChar).Value = email;
                 command.Parameters.Add("p_data", OracleType.Cursor).Direction = ParameterDirection.Output;
-
-
-                using (var reader = command.ExecuteReader())
+                try
                 {
-                    if (reader != null)
+                    using (var reader = command.ExecuteReader())
                     {
-                        while (reader.Read())
+                        if (reader != null)
                         {
-                            ClientModel clientModel = new ClientModel();
-                            clientModel.UserID = reader.GetInt32(10);//10
-                            clientModel.ClientName = reader[1].ToString();
-                            clientModel.Email = email;
-                            clientModel.Password = reader[3].ToString();
-                            clientModel.ClientType = reader[5].ToString();
-                            clientModel.Status = reader.GetInt32(6);
-                            clientModel.Rut = reader[11].ToString();
-                            clientModel.BusinessName = reader[12].ToString();
-                            clientModel.Country = reader[13].ToString();
-                            clientModel.Region = reader[14].ToString();
-                            clientModel.Commune = reader[15].ToString();
-                            clientModel.Street = reader[16].ToString();
-                            clientModel.Observations = reader[17].ToString();
-                            clientModel.Url = reader[18].ToString();
-                            clientModel.Phone = reader[19].ToString();
-                            clientList.Add(clientModel);
+                            while (reader.Read())
+                            {
+                                ClientModel clientModel = new ClientModel();
+
+                                clientModel.UserID = reader.GetInt32(10);//10
+                                clientModel.ClientName = reader[1].ToString();
+                                clientModel.Email = email;
+                                var clientType = reader[5].ToString();
+                                if (clientType == "2")
+                                {
+                                    clientModel.ClientType = "Nacional";
+                                    clientModel.Country = "Chile";
+                                    clientModel.Region = reader[13].ToString();
+                                    clientModel.Commune = reader[14].ToString();
+                                    clientModel.Street = reader[15].ToString();
+                                    clientModel.Observations = reader[16].ToString();
+                                    clientModel.Url = reader[17].ToString();
+                                    clientModel.Phone = reader[18].ToString();
+                                    clientModel.ContractExpiredAt = reader.GetDateTime(21);
+                                }
+                                else if (clientType == "3")
+                                {
+                                    clientModel.ClientType = "Internacional";
+                                    clientModel.Country = reader[13].ToString();
+                                    clientModel.Region = reader[14].ToString();
+                                    clientModel.Commune = reader[15].ToString();
+                                    clientModel.Street = reader[16].ToString();
+                                    clientModel.Observations = reader[17].ToString();
+                                    clientModel.Url = reader[18].ToString();
+                                    clientModel.Phone = reader[19].ToString();
+                                    clientModel.ContractExpiredAt = reader.GetDateTime(22);
+                                }
+                                var status = reader.GetInt32(6);
+                                if (status == 0)
+                                {
+                                    clientModel.Status = "Deshabilitado";
+                                }
+                                else if (status == 1)
+                                {
+                                    clientModel.Status = "Habilitado";
+                                }
+
+                                clientModel.Rut = reader[11].ToString();
+                                clientModel.BusinessName = reader[12].ToString();
+                                //clientModel.Country = reader[13].ToString();
+                                //clientModel.Region = reader[14].ToString();
+                                //clientModel.Commune = reader[15].ToString();
+                                //clientModel.Street = reader[16].ToString();
+                                //clientModel.Observations = reader[17].ToString();
+                                //clientModel.Url = reader[18].ToString();
+                                //clientModel.Phone = reader[19].ToString();
+                                clientList.Add(clientModel);
+                            }
+                        }
+                        else if (reader == null)
+                        {
+                            MessageBox.Show("El dato buscado no existe", "Feria Virtual", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
                         }
                     }
-                    else if (reader == null)
-                    {
-                        MessageBox.Show("El dato buscado no existe", "Feria Virtual", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
-                    }
                 }
-                
+                catch (Exception )
+                {
 
+                }      
             }
             return clientList;
         }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace CRUDWinFormsMVP.Models
@@ -20,7 +21,8 @@ namespace CRUDWinFormsMVP.Models
         private string street;
         private string url;
         private string observations;
-        private int status;
+        private string status;
+        private DateTime contractExpiredAt;
 
 
         //Properties - Validations
@@ -54,40 +56,11 @@ namespace CRUDWinFormsMVP.Models
         //[DisplayName("Contraseña")]
         //[Required(ErrorMessage = "La contraseña es requerida")]
         //[StringLength(20, MinimumLength = 5, ErrorMessage = "La contraseña debe tener entre 5 a 20 caracteres")]
-        public string Password
-        {
-            get { return password; }
-            set { password = value; }
-        }
-
-        [DisplayName("Cliente Rut")]
-        [Required(ErrorMessage = "El rut es requerido")]
-        [RegularExpression("^([0-9%-]+-[0-9k]+)$", ErrorMessage = "El rut tiene formato inválido")]
-        [StringLength(maximumLength: 10, MinimumLength = 9, ErrorMessage = "El rut debe tener entre {2} a {1} caracteres")]
-        public string Rut
-        {
-            get { return rut; }
-            set { rut = value; }
-        }
-        [DisplayName("Region")]
-        [Required(ErrorMessage = "La región es requerida")]
-        [RegularExpression("^([a-zA-Z ]+$)", ErrorMessage = "La región solo acepta caracteres")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "La region debe tener entre {2} a {1} caracteres")]
-        public string Region
-        {
-            get { return region; }
-            set { region = value; }
-        }
-
-        [DisplayName("Comuna")]
-        [Required(ErrorMessage = "La comuna es requerida")]
-        [RegularExpression("^([a-zA-Z ]+$)", ErrorMessage = "La comuna solo acepta caracteres")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "La comuna debe tener entre {2} a {1} caracteres")]
-        public string Commune
-        {
-            get { return commune; }
-            set { commune = value; }
-        }
+        //public string Password
+        //{
+        //    get { return password; }
+        //    set { password = value; }
+        //}
 
         [DisplayName("Tipo Cliente")]
         [Required(ErrorMessage = "El tipo cliente es requerido")]
@@ -97,6 +70,22 @@ namespace CRUDWinFormsMVP.Models
         {
             get { return clientType; }
             set { clientType = value; }
+        }
+        [DisplayName("Estado")]
+        public string Status
+        {
+            get { return status; }
+            set { status = value; }
+        }
+
+        [DisplayName("Rut")]
+        [Required(ErrorMessage = "El rut es requerido")]
+        [RegularExpression("^([0-9%-]+-[0-9k]+)$", ErrorMessage = "El rut tiene formato inválido")]
+        [StringLength(maximumLength: 10, MinimumLength = 9, ErrorMessage = "El rut debe tener entre {2} a {1} caracteres")]
+        public string Rut
+        {
+            get { return rut; }
+            set { rut = value; }
         }
 
         [DisplayName("Razón social")]
@@ -119,6 +108,26 @@ namespace CRUDWinFormsMVP.Models
             set { country = value; }
         }
 
+        [DisplayName("Región")]
+        [Required(ErrorMessage = "La región es requerida")]
+        [RegularExpression("^([a-zA-Z ]+$)", ErrorMessage = "La región solo acepta caracteres")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "La region debe tener entre {2} a {1} caracteres")]
+        public string Region
+        {
+            get { return region; }
+            set { region = value; }
+        }
+
+        [DisplayName("Comuna")]
+        [Required(ErrorMessage = "La comuna es requerida")]
+        [RegularExpression("^([a-zA-Z ]+$)", ErrorMessage = "La comuna solo acepta caracteres")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "La comuna debe tener entre {2} a {1} caracteres")]
+        public string Commune
+        {
+            get { return commune; }
+            set { commune = value; }
+        }
+
         [DisplayName("Calle")]
         [Required(ErrorMessage = "El nombre de la calle es requerido")]
         [RegularExpression("^([a-zA-Z0-9 #.,]+$)", ErrorMessage = "La calle tiene formato inválido")]
@@ -129,14 +138,13 @@ namespace CRUDWinFormsMVP.Models
             set { street = value; }
         }
 
-        [DisplayName("Teléfono")]
-        [Required(ErrorMessage = "El teléfono es requerido")]
-        [RegularExpression("^([0-9]+$)", ErrorMessage = "La calle tiene formato inválido")]
-        [StringLength(9, MinimumLength = 9, ErrorMessage = "El número de teléfono debe tener {1} dígitos")]
-        public string Phone
+        [DisplayName("Observaciones")]
+        [Required(AllowEmptyStrings = true)]
+        [StringLength(255, ErrorMessage = "Las observaciones sobrepasa el límite de 255 caracteres")]
+        public string Observations
         {
-            get { return phone; }
-            set { phone = value; }
+            get { return observations; }
+            set { observations = value; }
         }
 
         [DisplayName("URL Dirección")]
@@ -149,19 +157,28 @@ namespace CRUDWinFormsMVP.Models
             set { url = value; }
         }
 
-        [DisplayName("Observaciones")]
-        [Required(AllowEmptyStrings = true)]
-        [StringLength(255, ErrorMessage = "Las observaciones sobrepasa el límite de 255 caracteres")]
-        public string Observations
+        [DisplayName("Teléfono")]
+        [Required(ErrorMessage = "El teléfono es requerido")]
+        [RegularExpression("^([0-9]+$)", ErrorMessage = "La calle tiene formato inválido")]
+        [StringLength(9, MinimumLength = 9, ErrorMessage = "El número de teléfono debe tener {1} dígitos")]
+        public string Phone
         {
-            get { return observations; }
-            set { observations = value; }
+            get { return phone; }
+            set { phone = value; }
+        }
+        [DisplayName("Término de contrato")]
+        [Required(ErrorMessage = "La fecha del término de contrato es requerida")]
+        public DateTime ContractExpiredAt
+        {
+            get { return contractExpiredAt; }
+            set { contractExpiredAt = value; }
         }
 
-        public int Status
-        {
-            get { return status; }
-            set { status = value; }
-        }
+
+
+
+
+
+
     }
 }

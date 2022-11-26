@@ -12,7 +12,7 @@ namespace CRUDWinFormsMVP.Views
         event EventHandler LoginUser;
 
         void Show();
-
+        void Hide();
     }
 
 

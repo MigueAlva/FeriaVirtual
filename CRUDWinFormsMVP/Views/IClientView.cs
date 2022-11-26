@@ -20,6 +20,7 @@ namespace CRUDWinFormsMVP.Views
         string Street { get; set; }
         string Url { get; set; }
         string Observations { get; set; }
+        DateTime ContractExpiredAt { get; set; }
         string SearchValue { get; set; }
         bool IsEdit { get; set; }
         bool IsSuccessful { get; set; }

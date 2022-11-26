@@ -21,6 +21,7 @@ namespace CRUDWinFormsMVP.Presenters
             this.oraConnectionString = oraConnectionString;
             this.mainView.ShowClientView += ShowClientsView;
             this.mainView.Show();
+            
         }
 
         private void ShowClientsView(object sender, EventArgs e)
@@ -28,6 +29,7 @@ namespace CRUDWinFormsMVP.Presenters
             IClientView view = ClientView.GetInstace((MainView)mainView);
             IClientRepository repository = new ClientRepository(oraConnectionString);
             new ClientPresenter(view, repository);
+            
         }
     }
 }

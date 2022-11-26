@@ -166,6 +166,11 @@ namespace CRUDWinFormsMVP.Views
             get { return txtObservations.Text; }
             set { txtObservations.Text = value; }
         }
+        public DateTime ContractExpiredAt
+        {
+            get { return dtpContractExpiredAt.Value; }
+            set { dtpContractExpiredAt.Value = value; }
+        }
         public string SearchValue
         {
             get { return txtSearch.Text; }
@@ -229,6 +234,8 @@ namespace CRUDWinFormsMVP.Views
             }
             return instance;
         }
+
+      
 
         //private void ClientView_MouseDown(object sender, MouseEventArgs e)
         //{

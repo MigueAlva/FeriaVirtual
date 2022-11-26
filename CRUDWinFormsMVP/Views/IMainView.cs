@@ -11,5 +11,6 @@ namespace CRUDWinFormsMVP.Views
         event EventHandler ShowClientView;
         event EventHandler ShowOwnerView;
         void Show();
+        
     }
 }

@@ -68,6 +68,8 @@ namespace CRUDWinFormsMVP.Presenters
                         IMainView mainview = MainView.GetInstace((LoginView)view);
                         //ILoginRepository repository = new UserRepository(oracleConnectionString);
                         new MainPresenter(mainview, oracleConnectionString);
+                        this.view.Hide();
+                        
                     }
                     else if (result == false)
                     {

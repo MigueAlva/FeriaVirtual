@@ -68,14 +68,13 @@ namespace CRUDWinFormsMVP.Presenters
             //view.Password = client.Password;
             view.Rut = client.Rut;
             view.ClientName = client.ClientName;
-            if (client.ClientType == "2")
+            view.ClientType = client.ClientType;
+            if (client.ClientType == "Nacional")
             {
-                view.ClientType = "Nacional";
                 view.Country = "Chile";
             }
-            else if (client.ClientType == "3")
+            else if (client.ClientType == "Internacional")
             {
-                view.ClientType = "Internacional";
                 view.Country = client.Country;
             }
             view.Email = client.Email;
@@ -86,6 +85,7 @@ namespace CRUDWinFormsMVP.Presenters
             view.Street = client.Street;
             view.Url = client.Url;
             view.Observations = client.Observations;
+            view.ContractExpiredAt = client.ContractExpiredAt;
             view.IsEdit = true;
 
         }
@@ -94,7 +94,7 @@ namespace CRUDWinFormsMVP.Presenters
             var model = new ClientModel();
             
             model.UserID = Convert.ToInt32(view.UserID);
-            model.Password = "hola mundo";
+            //model.Password = "hola mundo";
             model.Rut = view.Rut;
             model.ClientName = view.ClientName;
             model.ClientType = view.ClientType;
@@ -105,6 +105,7 @@ namespace CRUDWinFormsMVP.Presenters
             model.Region = view.Region;
             model.Commune = view.Commune;
             model.Street = view.Street;
+            model.ContractExpiredAt = view.ContractExpiredAt;
             model.Url = view.Url;
             model.Observations = view.Observations;
 
@@ -135,11 +136,11 @@ namespace CRUDWinFormsMVP.Presenters
         {
             view.UserID = "0";
             //view.Password = "";
-            view.Rut = "0";
+            view.Rut = "";
             view.ClientName = "";
             view.ClientType = "";
             view.Email = "";
-            view.Phone = "0";
+            view.Phone = "";
             view.BusinessName = "";
             view.Country = "";
             view.Region = "";

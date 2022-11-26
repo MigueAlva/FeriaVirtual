@@ -43,6 +43,8 @@ namespace CRUDWinFormsMVP.Views
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.tabPageClientDetail = new System.Windows.Forms.TabPage();
+            this.dtpContractExpiredAt = new System.Windows.Forms.DateTimePicker();
+            this.label10 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.txtCommune = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -150,14 +152,14 @@ namespace CRUDWinFormsMVP.Views
             this.dgvClient.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvClient.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvClient.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvClient.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvClient.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dgvClient.ColumnHeadersHeight = 29;
             this.dgvClient.Location = new System.Drawing.Point(24, 77);
             this.dgvClient.MultiSelect = false;
             this.dgvClient.Name = "dgvClient";
-            this.dgvClient.RowHeadersWidth = 51;
-            this.dgvClient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvClient.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.dgvClient.Size = new System.Drawing.Size(898, 468);
             this.dgvClient.TabIndex = 7;
             // 
@@ -224,6 +226,8 @@ namespace CRUDWinFormsMVP.Views
             // tabPageClientDetail
             // 
             this.tabPageClientDetail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.tabPageClientDetail.Controls.Add(this.dtpContractExpiredAt);
+            this.tabPageClientDetail.Controls.Add(this.label10);
             this.tabPageClientDetail.Controls.Add(this.label17);
             this.tabPageClientDetail.Controls.Add(this.txtCommune);
             this.tabPageClientDetail.Controls.Add(this.label15);
@@ -260,6 +264,29 @@ namespace CRUDWinFormsMVP.Views
             this.tabPageClientDetail.TabIndex = 1;
             this.tabPageClientDetail.Text = "Cliente Detalles";
             // 
+            // dtpContractExpiredAt
+            // 
+            this.dtpContractExpiredAt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpContractExpiredAt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpContractExpiredAt.Location = new System.Drawing.Point(423, 437);
+            this.dtpContractExpiredAt.MinDate = new System.DateTime(2022, 11, 1, 0, 0, 0, 0);
+            this.dtpContractExpiredAt.Name = "dtpContractExpiredAt";
+            this.dtpContractExpiredAt.Size = new System.Drawing.Size(243, 34);
+            this.dtpContractExpiredAt.TabIndex = 46;
+            this.dtpContractExpiredAt.Value = new System.DateTime(2022, 11, 26, 0, 0, 0, 0);
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(417, 414);
+            this.label10.Name = "label10";
+            this.label10.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label10.Size = new System.Drawing.Size(186, 25);
+            this.label10.TabIndex = 45;
+            this.label10.Text = "Término contrato (*)";
+            // 
             // label17
             // 
             this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -287,7 +314,7 @@ namespace CRUDWinFormsMVP.Views
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(696, 149);
+            this.label15.Location = new System.Drawing.Point(712, 188);
             this.label15.Name = "label15";
             this.label15.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label15.Size = new System.Drawing.Size(296, 25);
@@ -297,7 +324,7 @@ namespace CRUDWinFormsMVP.Views
             // txtURL
             // 
             this.txtURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtURL.Location = new System.Drawing.Point(700, 172);
+            this.txtURL.Location = new System.Drawing.Point(716, 211);
             this.txtURL.MaxLength = 255;
             this.txtURL.Multiline = true;
             this.txtURL.Name = "txtURL";
@@ -309,7 +336,7 @@ namespace CRUDWinFormsMVP.Views
             // 
             this.txtObservations.AccessibleName = "";
             this.txtObservations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtObservations.Location = new System.Drawing.Point(700, 335);
+            this.txtObservations.Location = new System.Drawing.Point(716, 374);
             this.txtObservations.MaxLength = 255;
             this.txtObservations.Multiline = true;
             this.txtObservations.Name = "txtObservations";
@@ -322,7 +349,7 @@ namespace CRUDWinFormsMVP.Views
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(695, 309);
+            this.label9.Location = new System.Drawing.Point(711, 348);
             this.label9.Name = "label9";
             this.label9.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label9.Size = new System.Drawing.Size(144, 25);
@@ -620,7 +647,7 @@ namespace CRUDWinFormsMVP.Views
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(415, 414);
+            this.label7.Location = new System.Drawing.Point(712, 108);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label7.Size = new System.Drawing.Size(150, 25);
@@ -630,11 +657,11 @@ namespace CRUDWinFormsMVP.Views
             // txtBusinessName
             // 
             this.txtBusinessName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBusinessName.Location = new System.Drawing.Point(419, 437);
+            this.txtBusinessName.Location = new System.Drawing.Point(716, 131);
             this.txtBusinessName.MaxLength = 50;
             this.txtBusinessName.Name = "txtBusinessName";
             this.txtBusinessName.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtBusinessName.Size = new System.Drawing.Size(245, 34);
+            this.txtBusinessName.Size = new System.Drawing.Size(282, 34);
             this.txtBusinessName.TabIndex = 10;
             // 
             // label1
@@ -843,5 +870,7 @@ namespace CRUDWinFormsMVP.Views
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtURL;
         private System.Windows.Forms.PictureBox btnClose;
+        private System.Windows.Forms.DateTimePicker dtpContractExpiredAt;
+        private System.Windows.Forms.Label label10;
     }
 }
