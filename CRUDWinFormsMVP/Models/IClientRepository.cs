@@ -11,7 +11,8 @@ namespace CRUDWinFormsMVP.Models
         void Add(ClientModel clientModel);
         void Edit(ClientModel clientModel);
         void Delete(ClientModel clientModel);
-        IEnumerable<ClientModel> GetByValue(string value);//Searchs
+        IEnumerable<ClientModel> GetByValue(string value);
+        IEnumerable<ClientModel> GetAll();
 
     }
 }

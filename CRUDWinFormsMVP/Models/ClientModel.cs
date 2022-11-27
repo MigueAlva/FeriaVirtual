@@ -53,14 +53,6 @@ namespace CRUDWinFormsMVP.Models
             get { return email; }
             set { email = value; }
         }
-        //[DisplayName("Contraseña")]
-        //[Required(ErrorMessage = "La contraseña es requerida")]
-        //[StringLength(20, MinimumLength = 5, ErrorMessage = "La contraseña debe tener entre 5 a 20 caracteres")]
-        //public string Password
-        //{
-        //    get { return password; }
-        //    set { password = value; }
-        //}
 
         [DisplayName("Tipo Cliente")]
         [Required(ErrorMessage = "El tipo cliente es requerido")]
@@ -71,6 +63,7 @@ namespace CRUDWinFormsMVP.Models
             get { return clientType; }
             set { clientType = value; }
         }
+
         [DisplayName("Estado")]
         public string Status
         {
@@ -166,6 +159,7 @@ namespace CRUDWinFormsMVP.Models
             get { return phone; }
             set { phone = value; }
         }
+
         [DisplayName("Término de contrato")]
         [Required(ErrorMessage = "La fecha del término de contrato es requerida")]
         public DateTime ContractExpiredAt
@@ -173,12 +167,5 @@ namespace CRUDWinFormsMVP.Models
             get { return contractExpiredAt; }
             set { contractExpiredAt = value; }
         }
-
-
-
-
-
-
-
     }
 }

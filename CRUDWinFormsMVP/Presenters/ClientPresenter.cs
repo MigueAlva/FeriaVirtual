@@ -14,7 +14,6 @@ namespace CRUDWinFormsMVP.Presenters
         private IClientRepository repository;
         private BindingSource clientsBindingSource;
         private IEnumerable<ClientModel> clientList;
-
         //Constructor
         public ClientPresenter(IClientView view, IClientRepository repository)
         {
@@ -31,15 +30,14 @@ namespace CRUDWinFormsMVP.Presenters
             //Set Client bindind source
             this.view.SetClientListBindingSource(clientsBindingSource);
             //Load client list view   cargamos los datos a la lista de todos los clientes
-            //LoadAllClientList();
+            LoadAllClientList();
             //Show view
             this.view.Show();
         }
-
         //Methods
         private void LoadAllClientList() // se actualiza automaticamente cada vez que se cambia el enlace de datos 
         {
-            //clientList = repository.GetAll(this.view.SearchValue);
+            clientList = repository.GetAll();
             clientsBindingSource.DataSource = clientList;//Set data source.
         }
         private void SearchClient(object sender, EventArgs e)
@@ -49,11 +47,9 @@ namespace CRUDWinFormsMVP.Presenters
             {
                 clientList = repository.GetByValue(this.view.SearchValue);
             }
-            else
+            else if (emptyValue == true)
             {
-                MessageBox.Show("Ingrese el dato a buscar", "Atención - Feria Virtual", MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation);
-                //clientList = repository.GetAll(this.view.SearchValue);
+                clientList = repository.GetAll();
             }
             clientsBindingSource.DataSource = clientList;
         }

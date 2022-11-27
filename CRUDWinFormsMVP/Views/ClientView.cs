@@ -17,7 +17,7 @@ namespace CRUDWinFormsMVP.Views
         public ClientView()
         {
             InitializeComponent();
-            AssociateAndRaiseViewEvents(); //Asocia y genera los eventos de la vista
+            AssociateAndRaiseViewEvents(); 
             tabControl1.TabPages.Remove(tabPageClientDetail);
             btnClose.Click += delegate { this.Close(); };                   
         }
@@ -176,15 +176,16 @@ namespace CRUDWinFormsMVP.Views
             get { return txtSearch.Text; }
             set
             {
-                if (!string.IsNullOrWhiteSpace(txtSearch.Text))
-                {
-                    txtSearch.Text = value;
-                }
-                else
-                {
-                    MessageBox.Show("Ingrese el dato a buscarr", "Atención - Feria Virtual", MessageBoxButtons.RetryCancel,
-                        MessageBoxIcon.Exclamation);
-                }
+                txtSearch.Text = value;
+                //if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+                //{
+                    
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Ingrese el dato a buscarr", "Atención - Feria Virtual", MessageBoxButtons.RetryCancel,
+                //        MessageBoxIcon.Exclamation);
+                //}
             }
         }
         public bool IsEdit
@@ -234,9 +235,6 @@ namespace CRUDWinFormsMVP.Views
             }
             return instance;
         }
-
-      
-
         //private void ClientView_MouseDown(object sender, MouseEventArgs e)
         //{
         //    ReleaseCapture();

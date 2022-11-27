@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Net;
 using BCrypt.Net;
 using System.ComponentModel.DataAnnotations;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace CRUDWinFormsMVP._Repositories
 {
@@ -141,6 +142,133 @@ namespace CRUDWinFormsMVP._Repositories
         {
             var clientList = new List<ClientModel>();
 
+            ////Get all local user
+            using (var connection = new OracleConnection(connectionString))
+            using (var command = new OracleCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT u.id, u.name, u.email, u.role_id, u.status, lu.rut,lu.business_name, 'Chile' as country, lu.region, lu.commune, lu.street, lu.observations, lu.direction_url, lu.phone, c.expired_at  FROM users u  INNER JOIN roles r ON r.id = u.role_id INNER JOIN local_users lu ON lu.user_id = u.id INNER JOIN contracts c ON c.id = lu.contract_id";
+                var reader = command.ExecuteReader();
+                try
+                {
+                    using (reader = command.ExecuteReader())
+                    {
+                        if (reader != null)
+                        {
+                            while (reader.Read())
+                            {
+                                ClientModel clientModel = new ClientModel();
+
+                                clientModel.UserID = reader.GetInt32(0);//10
+                                clientModel.ClientName = reader[1].ToString();
+                                clientModel.Email = reader[2].ToString();
+                                var clientType = reader[3].ToString();
+                                if (clientType == "2")
+                                {
+                                    clientModel.ClientType = "Nacional";
+                                    
+                                }
+                                var status = reader.GetInt32(4);
+                                if (status == 0)
+                                {
+                                    clientModel.Status = "Deshabilitado";
+                                }
+                                else if (status == 1)
+                                {
+                                    clientModel.Status = "Habilitado";
+                                }
+                                clientModel.Rut = reader[5].ToString();
+                                clientModel.BusinessName = reader[6].ToString();
+                                clientModel.Country = reader[7].ToString(); //Chile
+                                clientModel.Region = reader[8].ToString();
+                                clientModel.Commune = reader[9].ToString();
+                                clientModel.Street = reader[10].ToString();
+                                clientModel.Observations = reader[11].ToString();
+                                clientModel.Url = reader[12].ToString();
+                                clientModel.Phone = reader[13].ToString();
+                                clientModel.ContractExpiredAt = reader.GetDateTime(14);
+                                clientList.Add(clientModel);
+                            }
+                        }
+                        else if (reader == null)
+                        {
+                            MessageBox.Show("El dato buscado no existe", "Feria Virtual", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Contáctese con soporte Feria Virtual ", "Feria Virtual", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                }
+
+                //Get all external user
+                using (var connection2 = new OracleConnection(connectionString))
+                using (var command2 = new OracleCommand())
+                {
+                    connection2.Open();
+                    command2.Connection = connection2;
+                    command2.CommandText = "SELECT u.id, u.name, u.email, u.role_id, u.status, eu.rut, eu.business_name, eu.country, eu.region, eu.commune, eu.street, eu.observations, eu.direction_url, eu.phone, c.expired_at FROM users u INNER JOIN roles r ON r.id = u.role_id INNER JOIN external_users eu ON u.id = eu.user_id INNER JOIN contracts c ON eu.contract_id = c.id";
+                    var reader2 = command2.ExecuteReader();
+                    try
+                    {
+                        using (reader2 = command2.ExecuteReader())
+                        {
+                            if (reader2 != null)
+                            {
+                                while (reader2.Read())
+                                {
+                                    ClientModel clientModel = new ClientModel();
+
+                                    clientModel.UserID = reader2.GetInt32(0);//10
+                                    clientModel.ClientName = reader2[1].ToString();
+                                    clientModel.Email = reader2[2].ToString();
+                                    var clientType = reader2[3].ToString();
+                                    if (clientType == "3")
+                                    {
+                                        clientModel.ClientType = "Internacional";
+                                        
+                                    }
+                                    var status = reader2.GetInt32(4);
+                                    if (status == 0)
+                                    {
+                                        clientModel.Status = "Deshabilitado";
+                                    }
+                                    else if (status == 1)
+                                    {
+                                        clientModel.Status = "Habilitado";
+                                    }
+
+                                    clientModel.Rut = reader2[5].ToString();
+                                    clientModel.BusinessName = reader2[6].ToString();
+                                    clientModel.Country = reader2[7].ToString();
+                                    clientModel.Region = reader2[8].ToString();
+                                    clientModel.Commune = reader2[9].ToString();
+                                    clientModel.Street = reader2[10].ToString();
+                                    clientModel.Observations = reader2[11].ToString();
+                                    clientModel.Url = reader2[12].ToString();
+                                    clientModel.Phone = reader2[13].ToString();
+                                    clientModel.ContractExpiredAt = reader2.GetDateTime(14);
+                                    clientList.Add(clientModel);
+                                }
+                            }
+                            else if (reader2 == null)
+                            {
+                                MessageBox.Show("El dato buscado no existe", "Feria Virtual", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Contáctese con soporte Feria Virtual", "Feria Virtual", MessageBoxButtons.OK,
+                               MessageBoxIcon.Information);
+                    }
+                }
+            }
+            return clientList;         
         }
         public void Delete(ClientModel ClientModel)
         {
