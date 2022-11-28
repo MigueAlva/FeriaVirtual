@@ -65,6 +65,7 @@ namespace CRUDWinFormsMVP.Views
                     tabControl1.TabPages.Add(tabPageClientList);
                 }
 
+
             };
             //Cancel
             btnCancel.Click += delegate
