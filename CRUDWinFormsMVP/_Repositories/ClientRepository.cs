@@ -26,26 +26,7 @@ namespace CRUDWinFormsMVP._Repositories
             var randomNumber = new Random().Next(10000000, 99999999);
             var mySalt = BCrypt.Net.BCrypt.GenerateSalt(10);
             var myHash = BCrypt.Net.BCrypt.HashPassword(randomNumber.ToString(), mySalt);
-
-            //using (var connection = new OracleConnection(connectionString))
-            //using (var command = new OracleCommand("ADD_USER", connection))
-            //{              
-            //    connection.Open();
-            //    command.CommandType = CommandType.StoredProcedure;             
-            //    command.Parameters.Add("p_name", OracleType.VarChar).Value = ClientModel.ClientName;
-            //    command.Parameters.Add("p_email", OracleType.VarChar).Value = ClientModel.Email;
-            //    command.Parameters.Add("p_password", OracleType.VarChar).Value = myHash.ToString();
-                //if (ClientModel.ClientType == "Nacional" || ClientModel.ClientType == "nacional")
-                //{
-                //    command.Parameters.Add("p_role_id", OracleType.Number).Value = 2;
-                //}
-                //else if (ClientModel.ClientType == "Internacional" || ClientModel.ClientType == "internacional")
-                //{
-                //    command.Parameters.Add("p_role_id", OracleType.Number).Value = 3;
-                //}
-                //command.Parameters.Add("p_data", OracleType.Cursor).Direction = ParameterDirection.Output;
-                //command.ExecuteNonQuery();
-            //}
+       
             switch (ClientModel.ClientType) 
             {
                 case "Nacional":
@@ -142,7 +123,7 @@ namespace CRUDWinFormsMVP._Repositories
         {
             var clientList = new List<ClientModel>();
 
-            ////Get all local user
+            //Get all local user
             using (var connection = new OracleConnection(connectionString))
             using (var command = new OracleCommand())
             {
@@ -160,7 +141,7 @@ namespace CRUDWinFormsMVP._Repositories
                             {
                                 ClientModel clientModel = new ClientModel();
 
-                                clientModel.UserID = reader.GetInt32(0);//10
+                                clientModel.UserID = reader.GetInt32(0);
                                 clientModel.ClientName = reader[1].ToString();
                                 clientModel.Email = reader[2].ToString();
                                 var clientType = reader[3].ToString();
@@ -180,7 +161,7 @@ namespace CRUDWinFormsMVP._Repositories
                                 }
                                 clientModel.Rut = reader[5].ToString();
                                 clientModel.BusinessName = reader[6].ToString();
-                                clientModel.Country = reader[7].ToString(); //Chile
+                                clientModel.Country = reader[7].ToString();
                                 clientModel.Region = reader[8].ToString();
                                 clientModel.Commune = reader[9].ToString();
                                 clientModel.Street = reader[10].ToString();
@@ -198,7 +179,7 @@ namespace CRUDWinFormsMVP._Repositories
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     MessageBox.Show("Contáctese con soporte Feria Virtual ", "Feria Virtual", MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
@@ -222,7 +203,7 @@ namespace CRUDWinFormsMVP._Repositories
                                 {
                                     ClientModel clientModel = new ClientModel();
 
-                                    clientModel.UserID = reader2.GetInt32(0);//10
+                                    clientModel.UserID = reader2.GetInt32(0);
                                     clientModel.ClientName = reader2[1].ToString();
                                     clientModel.Email = reader2[2].ToString();
                                     var clientType = reader2[3].ToString();
@@ -298,17 +279,6 @@ namespace CRUDWinFormsMVP._Repositories
         public void Edit(ClientModel ClientModel)
         {
             //EDIT_USER
-            //using (var connection = new OracleConnection(connectionString))
-            //using (var command = new OracleCommand("EDIT_USER", connection))
-            //{
-            //    connection.Open();
-            //    command.CommandType = CommandType.StoredProcedure;
-            //    command.Parameters.Add("p_id", OracleType.Number).Value = ClientModel.UserID;
-            //    command.Parameters.Add("p_name", OracleType.VarChar).Value = ClientModel.ClientName;
-            //    command.Parameters.Add("p_data", OracleType.Cursor).Direction = ParameterDirection.Output;
-            //    command.ExecuteNonQuery();
-            //}
-
             switch (ClientModel.ClientType)
             {
                 case "Nacional":
@@ -427,13 +397,6 @@ namespace CRUDWinFormsMVP._Repositories
 
                                 clientModel.Rut = reader[11].ToString();
                                 clientModel.BusinessName = reader[12].ToString();
-                                //clientModel.Country = reader[13].ToString();
-                                //clientModel.Region = reader[14].ToString();
-                                //clientModel.Commune = reader[15].ToString();
-                                //clientModel.Street = reader[16].ToString();
-                                //clientModel.Observations = reader[17].ToString();
-                                //clientModel.Url = reader[18].ToString();
-                                //clientModel.Phone = reader[19].ToString();
                                 clientList.Add(clientModel);
                             }
                         }
@@ -444,9 +407,9 @@ namespace CRUDWinFormsMVP._Repositories
                         }
                     }
                 }
-                catch (Exception )
+                catch (Exception)
                 {
-
+                    //Nothing
                 }      
             }
             return clientList;

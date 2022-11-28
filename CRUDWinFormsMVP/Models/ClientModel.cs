@@ -8,7 +8,6 @@ namespace CRUDWinFormsMVP.Models
     {
         //Fields
         private int userID;
-        private string password;
         private string rut;
         private string clientName;
         private string clientType;

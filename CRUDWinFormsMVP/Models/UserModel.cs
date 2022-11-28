@@ -6,12 +6,6 @@ namespace CRUDWinFormsMVP.Models
     {
         private string user;
         private string pass;
-
-        //public UserModel(string connectionString)
-        //{
-        //    this.connectionString = connectionString;
-        //}
-
         UserRepository userepo = new UserRepository();
 
         public bool LoginUser(string value3, string value4)

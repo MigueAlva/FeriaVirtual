@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using CRUDWinFormsMVP.Presenters;
+
 
 namespace CRUDWinFormsMVP.Views
 {
@@ -18,20 +18,17 @@ namespace CRUDWinFormsMVP.Views
         {
             InitializeComponent();
             AssociateAndRaiseViewEvents(); 
-            tabControl1.TabPages.Remove(tabPageClientDetail);
-            //btnClose.Click += delegate { 
-            //    this.Close();          
-            //};                   
+            tabControl1.TabPages.Remove(tabPageClientDetail);                 
         }
 
         private void AssociateAndRaiseViewEvents()
         {
             //Search
-            btnSearch.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); }; //estamos asociando el evento
-            txtSearch.KeyDown += (s, e) =>  //acá es para que busque al presionar la tecla enter
+            btnSearch.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); }; 
+            txtSearch.KeyDown += (s, e) =>  
              {
                  if (e.KeyCode == Keys.Enter)
-                     SearchEvent?.Invoke(this, EventArgs.Empty);  //versión corta para invocar al evento
+                     SearchEvent?.Invoke(this, EventArgs.Empty);
              };
 
             //Add new
@@ -87,7 +84,6 @@ namespace CRUDWinFormsMVP.Views
                     if (result == DialogResult.Yes)
                     {
                         DeleteEvent?.Invoke(this, EventArgs.Empty);
-                        //MessageBox.Show(Message);
                     }
                 }
                 else if (dgvClient.SelectedRows.Count <= 0)
@@ -103,11 +99,6 @@ namespace CRUDWinFormsMVP.Views
             get { return txtUserID.Text; }
             set { txtUserID.Text = value; }
         }
-        //public string Password
-        //{
-        //    get { return txtPassword.Text; }
-        //    set { txtPassword.Text = value; }
-        //}
         public string Rut
         {
             get { return txtRut.Text; }
@@ -176,19 +167,7 @@ namespace CRUDWinFormsMVP.Views
         public string SearchValue
         {
             get { return txtSearch.Text; }
-            set
-            {
-                txtSearch.Text = value;
-                //if (!string.IsNullOrWhiteSpace(txtSearch.Text))
-                //{
-                    
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Ingrese el dato a buscarr", "Atención - Feria Virtual", MessageBoxButtons.RetryCancel,
-                //        MessageBoxIcon.Exclamation);
-                //}
-            }
+            set { txtSearch.Text = value; }
         }
         public bool IsEdit
         {
@@ -227,8 +206,7 @@ namespace CRUDWinFormsMVP.Views
                 instance = new ClientView();
                 instance.MdiParent = parentContainer;
                 instance.FormBorderStyle = FormBorderStyle.None;
-                instance.Dock = DockStyle.Fill;
-                
+                instance.Dock = DockStyle.Fill;             
             }
             else
             {
@@ -238,13 +216,7 @@ namespace CRUDWinFormsMVP.Views
             }
             return instance;
         }
-         
 
-        //private void ClientView_MouseDown(object sender, MouseEventArgs e)
-        //{
-        //    ReleaseCapture();
-        //    SendMessage(this.Handle, 0x112, 0xf012, 0);
-        //}
     }
 }
 

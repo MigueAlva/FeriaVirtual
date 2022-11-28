@@ -8,7 +8,6 @@ namespace CRUDWinFormsMVP.Views
         string Pass { get; set; }
 
         event EventHandler ShowMainView;
-        event EventHandler ShowOwnerView;
         event EventHandler LoginUser;
 
         void Show();

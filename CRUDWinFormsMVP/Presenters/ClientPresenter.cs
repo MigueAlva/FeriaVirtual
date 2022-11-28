@@ -20,25 +20,21 @@ namespace CRUDWinFormsMVP.Presenters
             this.clientsBindingSource = new BindingSource();
             this.view = view;
             this.repository = repository;
-            //Subscribe event handler methods to view events Se implementa lo que se va a hacer cuando un evento se ejecute
             this.view.SearchEvent += SearchClient;
             this.view.AddNewEvent += AddNewClient;
             this.view.EditEvent += LoadSelectedClientToEdit;
             this.view.DeleteEvent += DeleteSelectedClient;
             this.view.SaveEvent += SaveClient;
             this.view.CancelEvent += CancelAction;
-            //Set Client bindind source
             this.view.SetClientListBindingSource(clientsBindingSource);
-            //Load client list view   cargamos los datos a la lista de todos los clientes
             LoadAllClientList();
-            //Show view
             this.view.Show();
         }
         //Methods
-        private void LoadAllClientList() // se actualiza automaticamente cada vez que se cambia el enlace de datos 
+        private void LoadAllClientList()
         {
             clientList = repository.GetAll();
-            clientsBindingSource.DataSource = clientList;//Set data source.
+            clientsBindingSource.DataSource = clientList;
         }
         private void SearchClient(object sender, EventArgs e)
         {
@@ -61,7 +57,6 @@ namespace CRUDWinFormsMVP.Presenters
         {
             var client = (ClientModel)clientsBindingSource.Current;
             view.UserID = client.UserID.ToString();
-            //view.Password = client.Password;
             view.Rut = client.Rut;
             view.ClientName = client.ClientName;
             view.ClientType = client.ClientType;
@@ -90,7 +85,6 @@ namespace CRUDWinFormsMVP.Presenters
             var model = new ClientModel();
             
             model.UserID = Convert.ToInt32(view.UserID);
-            //model.Password = "hola mundo";
             model.Rut = view.Rut;
             model.ClientName = view.ClientName;
             model.ClientType = view.ClientType;
@@ -108,18 +102,16 @@ namespace CRUDWinFormsMVP.Presenters
             try
             {
                 new Common.ModelDataValidation().Validate(model);
-                if (view.IsEdit)//Edit model
+                if (view.IsEdit)//Edit user
                 {
                     repository.Edit(model);
-                    view.Message = "Cliente modificado exitosamente";
                 }
-                else //Add new model
+                else //Add new user
                 {
                     repository.Add(model);
-                    view.Message = "Cliente registrado exitosamente";
                 }
                 view.IsSuccessful = true;
-                SearchClient(model.Email, EventArgs.Empty); //probar esto
+                SearchClient(model.Email, EventArgs.Empty);
                 CleanviewFields();
             }
             catch (Exception ex)
@@ -131,7 +123,6 @@ namespace CRUDWinFormsMVP.Presenters
         private void CleanviewFields()
         {
             view.UserID = "0";
-            //view.Password = "";
             view.Rut = "";
             view.ClientName = "";
             view.ClientType = "";
@@ -156,8 +147,6 @@ namespace CRUDWinFormsMVP.Presenters
                 var client = (ClientModel)clientsBindingSource.Current;
                 repository.Delete(client);
                 view.IsSuccessful = true;
-                //view.Message = "Cliente dado de baja exitosamente";
-                //LoadAllClientList();
                 SearchClient(client.Email, EventArgs.Empty);
             }
             catch (Exception ex)

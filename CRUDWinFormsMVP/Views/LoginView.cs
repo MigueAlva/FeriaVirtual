@@ -11,7 +11,6 @@ namespace CRUDWinFormsMVP.Views
         {
             InitializeComponent();
             AssociateAndRaiseViewEvents();
-            //btnLogin.Click += delegate { LoginUser?.Invoke(this, EventArgs.Empty); };
         }
 
         private void AssociateAndRaiseViewEvents()
@@ -19,13 +18,11 @@ namespace CRUDWinFormsMVP.Views
             //Login
             btnLogin.Click += delegate
             {
-                LoginUser?.Invoke(this, EventArgs.Empty);
-                
+                LoginUser?.Invoke(this, EventArgs.Empty);                
             };
         }
 
         public event EventHandler ShowMainView;
-        public event EventHandler ShowOwnerView;
         public event EventHandler LoginUser;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]

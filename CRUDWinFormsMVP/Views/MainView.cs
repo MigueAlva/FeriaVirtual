@@ -24,11 +24,9 @@ namespace CRUDWinFormsMVP.Views
                     panelContenedor.Visible = true;
                     lblDate.Visible = true;
                     lblTime.Visible = true;
-
                 }                 
             };
         }
-
         public event EventHandler ShowClientView;
         public event EventHandler ShowOwnerView;
 
@@ -45,8 +43,7 @@ namespace CRUDWinFormsMVP.Views
             {
                 instance = new MainView();
                 instance.FormBorderStyle = FormBorderStyle.None;
-                instance.Dock = DockStyle.Fill;
-                
+                instance.Dock = DockStyle.Fill;               
             }
             else
             {
@@ -54,7 +51,6 @@ namespace CRUDWinFormsMVP.Views
                     instance.WindowState = FormWindowState.Normal;
                 instance.BringToFront();
                 instance.panelContenedor.Visible = true;
-
             }
             return instance;
         }
@@ -106,28 +102,5 @@ namespace CRUDWinFormsMVP.Views
             lblTime.Text = DateTime.Now.ToLongTimeString();
             lblDate.Text = DateTime.Now.ToLongDateString();
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        //public void OpenFormClient(object formClient)
-        //{
-        //    if (instance.panelContenedor.Controls.Count > 0)
-        //        instance.panelContenedor.Controls.RemoveAt(0);
-        //    Form fh = formClient as Form;
-        //    fh.TopLevel = false;
-        //    instance.Dock = DockStyle.Fill;
-        //    instance.panelContenedor.Controls.Add(fh);
-        //    instance.panelContenedor.Tag = fh;
-        //    fh.Show();
-        //}
-
-        //public void btnClients_Click(object sender, EventArgs e)
-        //{
-        //    OpenFormClient(new ClientView());
-        //}
     }
 }

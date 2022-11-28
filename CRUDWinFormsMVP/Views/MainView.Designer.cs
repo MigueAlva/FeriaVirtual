@@ -42,12 +42,12 @@ namespace CRUDWinFormsMVP.Views
             this.lblTime = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.BarraTitulo = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnRestaurar = new System.Windows.Forms.PictureBox();
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.btnMinimizar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.dateTime = new System.Windows.Forms.Timer(this.components);
-            this.label2 = new System.Windows.Forms.Label();
             this.panelLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelContenedor.SuspendLayout();
@@ -92,9 +92,9 @@ namespace CRUDWinFormsMVP.Views
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(1, 19);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(273, 116);
+            this.pictureBox1.Size = new System.Drawing.Size(276, 119);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -196,6 +196,17 @@ namespace CRUDWinFormsMVP.Views
             this.BarraTitulo.TabIndex = 13;
             this.BarraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BarraTitulo_MouseDown);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(12, 7);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(124, 23);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Feria Virtual";
+            // 
             // btnRestaurar
             // 
             this.btnRestaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -253,18 +264,6 @@ namespace CRUDWinFormsMVP.Views
             // 
             this.dateTime.Enabled = true;
             this.dateTime.Tick += new System.EventHandler(this.dateTime_Tick);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(12, 7);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 23);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Feria Virtual";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // MainView
             // 
