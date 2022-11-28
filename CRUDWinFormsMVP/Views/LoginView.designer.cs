@@ -37,7 +37,6 @@ namespace CRUDWinFormsMVP.Views
             this.txtPass = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.linkPass = new System.Windows.Forms.LinkLabel();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.btnMinimizar = new System.Windows.Forms.PictureBox();
             this.lblErrorMessa = new System.Windows.Forms.Label();
@@ -115,7 +114,7 @@ namespace CRUDWinFormsMVP.Views
             this.btnLogin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.ForeColor = System.Drawing.Color.LightGray;
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
             this.btnLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLogin.Location = new System.Drawing.Point(335, 208);
             this.btnLogin.Name = "btnLogin";
@@ -123,29 +122,16 @@ namespace CRUDWinFormsMVP.Views
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "ACCEDER";
             this.btnLogin.UseVisualStyleBackColor = false;
-            //this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.DimGray;
+            this.label1.ForeColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(433, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(164, 21);
             this.label1.TabIndex = 4;
             this.label1.Text = "INICIO DE SESIÓN";
-            // 
-            // linkPass
-            // 
-            this.linkPass.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            this.linkPass.AutoSize = true;
-            this.linkPass.LinkColor = System.Drawing.Color.DimGray;
-            this.linkPass.Location = new System.Drawing.Point(373, 270);
-            this.linkPass.Name = "linkPass";
-            this.linkPass.Size = new System.Drawing.Size(267, 21);
-            this.linkPass.TabIndex = 0;
-            this.linkPass.TabStop = true;
-            this.linkPass.Text = "¿Ha olvidado su contraseña?";
             // 
             // btnCerrar
             // 
@@ -183,16 +169,15 @@ namespace CRUDWinFormsMVP.Views
             this.lblErrorMessa.Text = "Error Message";
             this.lblErrorMessa.Visible = false;
             // 
-            // Form1
+            // LoginView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(173)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(780, 330);
             this.Controls.Add(this.lblErrorMessa);
             this.Controls.Add(this.btnMinimizar);
             this.Controls.Add(this.btnCerrar);
-            this.Controls.Add(this.linkPass);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPass);
@@ -200,7 +185,7 @@ namespace CRUDWinFormsMVP.Views
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 10.8F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "LoginView";
             this.Opacity = 0.9D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -222,7 +207,6 @@ namespace CRUDWinFormsMVP.Views
         private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.LinkLabel linkPass;
         private System.Windows.Forms.PictureBox btnCerrar;
         private System.Windows.Forms.PictureBox btnMinimizar;
         private System.Windows.Forms.Label label2;

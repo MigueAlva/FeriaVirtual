@@ -88,40 +88,10 @@ namespace CRUDWinFormsMVP.Views
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-
-        //private void btnLogin_Click(object sender, EventArgs e)
-        //{
-        //    if (txtUser.Text != "USUARIO")
-        //    {
-        //        if (txtPass.Text != "CONTRASEÑA")
-        //        {
-        //            login
-        //            UserRepository user = new UserRepository();
-
-        //            if (validLogin == true)
-        //            {//Aqui agregar pagina de inicio del sistema
-        //                MainView mainView = new MainView();
-        //                mainView.Show();
-        //                this.Hide();
-        //            }
-        //            else msgError("Usuario o contraseña incorrectos, por favor intente nuevamente");
-        //            txtPass.Clear();
-        ////            txtUser.Focus();
-        //        }
-        ////        else msgError("Por favor ingrese su contraseña");
-        //    }
-        ////    else msgError("Por favor ingrese su nombre de usuario");
-        //}
-        private void msgError(string msg)
-        {
-            lblErrorMessa.Text = "        " + msg;
-            lblErrorMessa.Visible = true;
-        }
-
         public string User
         {
             get { return txtUser.Text; }
-            set { txtUser.Text = value; } //poner las validaciones acá de IsNullOrWhiteSpace - abrir clientview
+            set { txtUser.Text = value; } 
         }
         public string Pass
         {

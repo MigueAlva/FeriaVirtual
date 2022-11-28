@@ -36,7 +36,7 @@ namespace CRUDWinFormsMVP.Views
 
         //Methods
         void SetClientListBindingSource(BindingSource ClientList);
-        void Show();//Optional
+        void Show();
 
     }
 }

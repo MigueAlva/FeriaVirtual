@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using System.Drawing;
 using System.Runtime.InteropServices;
-
+using CRUDWinFormsMVP.Presenters;
 
 namespace CRUDWinFormsMVP.Views
 {
@@ -19,7 +19,9 @@ namespace CRUDWinFormsMVP.Views
             InitializeComponent();
             AssociateAndRaiseViewEvents(); 
             tabControl1.TabPages.Remove(tabPageClientDetail);
-            btnClose.Click += delegate { this.Close(); };                   
+            //btnClose.Click += delegate { 
+            //    this.Close();          
+            //};                   
         }
 
         private void AssociateAndRaiseViewEvents()
@@ -226,6 +228,7 @@ namespace CRUDWinFormsMVP.Views
                 instance.MdiParent = parentContainer;
                 instance.FormBorderStyle = FormBorderStyle.None;
                 instance.Dock = DockStyle.Fill;
+                
             }
             else
             {
@@ -235,6 +238,8 @@ namespace CRUDWinFormsMVP.Views
             }
             return instance;
         }
+         
+
         //private void ClientView_MouseDown(object sender, MouseEventArgs e)
         //{
         //    ReleaseCapture();
