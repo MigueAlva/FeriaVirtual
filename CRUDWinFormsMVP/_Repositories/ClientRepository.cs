@@ -52,7 +52,8 @@ namespace CRUDWinFormsMVP._Repositories
                             command.Parameters.Add("p_contract_expired_at", OracleType.DateTime).Value = ClientModel.ContractExpiredAt;
                             command.Parameters.Add("p_data", OracleType.Cursor).Direction = ParameterDirection.Output;
                             command.ExecuteNonQuery();
-                            MessageBox.Show("Cliente nacional registrado");
+                            MessageBox.Show("Cliente nacional registrado exitosamente", "Feria virtual", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
                             SendPassword(ClientModel.Email, ClientModel.ClientName, randomNumber.ToString());
                         }
                         break;
@@ -83,7 +84,8 @@ namespace CRUDWinFormsMVP._Repositories
                             command.Parameters.Add("p_contract_expired_at", OracleType.DateTime).Value = ClientModel.ContractExpiredAt;
                             command.Parameters.Add("p_data", OracleType.Cursor).Direction = ParameterDirection.Output;
                             command.ExecuteNonQuery();
-                            MessageBox.Show("Cliente internacional registrado");
+                            MessageBox.Show("Cliente internacional registrado exitosamente", "Feria virtual", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
                             SendPassword(ClientModel.Email, ClientModel.ClientName, randomNumber.ToString());
                         }
                         break;

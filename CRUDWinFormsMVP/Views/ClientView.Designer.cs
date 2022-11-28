@@ -162,10 +162,11 @@ namespace CRUDWinFormsMVP.Views
             this.dgvClient.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvClient.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(102)))), ((int)(((byte)(0)))));
             this.dgvClient.ColumnHeadersHeight = 29;
-            this.dgvClient.GridColor = System.Drawing.SystemColors.Control;
+            this.dgvClient.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dgvClient.GridColor = System.Drawing.Color.Gray;
             this.dgvClient.Location = new System.Drawing.Point(24, 77);
-            this.dgvClient.MultiSelect = false;
             this.dgvClient.Name = "dgvClient";
+            this.dgvClient.ReadOnly = true;
             this.dgvClient.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.dgvClient.Size = new System.Drawing.Size(898, 441);
             this.dgvClient.TabIndex = 7;
@@ -793,7 +794,7 @@ namespace CRUDWinFormsMVP.Views
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(952, 175);
+            this.btnCancel.Location = new System.Drawing.Point(952, 172);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnCancel.Size = new System.Drawing.Size(193, 44);

@@ -77,7 +77,7 @@ namespace CRUDWinFormsMVP.Views
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(0)))));
             this.panel2.Location = new System.Drawing.Point(0, 430);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(5, 39);
+            this.panel2.Size = new System.Drawing.Size(5, 56);
             this.panel2.TabIndex = 6;
             // 
             // panel1
@@ -85,7 +85,7 @@ namespace CRUDWinFormsMVP.Views
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(0)))));
             this.panel1.Location = new System.Drawing.Point(0, 257);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(5, 39);
+            this.panel1.Size = new System.Drawing.Size(5, 50);
             this.panel1.TabIndex = 5;
             // 
             // pictureBox1
@@ -107,11 +107,12 @@ namespace CRUDWinFormsMVP.Views
             this.btnCerrarSesion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(0)))));
             this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrarSesion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarSesion.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrarSesion.Image")));
             this.btnCerrarSesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(4, 430);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(5, 430);
             this.btnCerrarSesion.Margin = new System.Windows.Forms.Padding(4);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
-            this.btnCerrarSesion.Size = new System.Drawing.Size(273, 39);
+            this.btnCerrarSesion.Size = new System.Drawing.Size(273, 56);
             this.btnCerrarSesion.TabIndex = 3;
             this.btnCerrarSesion.Text = "Cerrar sesión";
             this.btnCerrarSesion.UseVisualStyleBackColor = false;
@@ -129,7 +130,7 @@ namespace CRUDWinFormsMVP.Views
             this.btnClients.Location = new System.Drawing.Point(5, 257);
             this.btnClients.Margin = new System.Windows.Forms.Padding(4);
             this.btnClients.Name = "btnClients";
-            this.btnClients.Size = new System.Drawing.Size(272, 39);
+            this.btnClients.Size = new System.Drawing.Size(272, 50);
             this.btnClients.TabIndex = 1;
             this.btnClients.Text = "Clientes";
             this.btnClients.UseVisualStyleBackColor = true;
@@ -143,7 +144,7 @@ namespace CRUDWinFormsMVP.Views
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(0, 0);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(2000, 700);
+            this.panelContenedor.Size = new System.Drawing.Size(1942, 700);
             this.panelContenedor.TabIndex = 15;
             // 
             // lblDate
@@ -152,7 +153,7 @@ namespace CRUDWinFormsMVP.Views
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Century", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(224)))), ((int)(((byte)(0)))));
-            this.lblDate.Location = new System.Drawing.Point(748, 315);
+            this.lblDate.Location = new System.Drawing.Point(719, 315);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(783, 60);
             this.lblDate.TabIndex = 2;
@@ -165,7 +166,7 @@ namespace CRUDWinFormsMVP.Views
             this.lblTime.AutoSize = true;
             this.lblTime.Font = new System.Drawing.Font("Century Gothic", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTime.ForeColor = System.Drawing.Color.Transparent;
-            this.lblTime.Location = new System.Drawing.Point(920, 202);
+            this.lblTime.Location = new System.Drawing.Point(891, 202);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(434, 119);
             this.lblTime.TabIndex = 1;
@@ -192,7 +193,7 @@ namespace CRUDWinFormsMVP.Views
             this.BarraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.BarraTitulo.Location = new System.Drawing.Point(0, 0);
             this.BarraTitulo.Name = "BarraTitulo";
-            this.BarraTitulo.Size = new System.Drawing.Size(2000, 38);
+            this.BarraTitulo.Size = new System.Drawing.Size(1942, 38);
             this.BarraTitulo.TabIndex = 13;
             this.BarraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BarraTitulo_MouseDown);
             // 
@@ -212,7 +213,7 @@ namespace CRUDWinFormsMVP.Views
             this.btnRestaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRestaurar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRestaurar.Image = ((System.Drawing.Image)(resources.GetObject("btnRestaurar.Image")));
-            this.btnRestaurar.Location = new System.Drawing.Point(1899, 7);
+            this.btnRestaurar.Location = new System.Drawing.Point(1841, 7);
             this.btnRestaurar.Name = "btnRestaurar";
             this.btnRestaurar.Size = new System.Drawing.Size(25, 25);
             this.btnRestaurar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -226,7 +227,7 @@ namespace CRUDWinFormsMVP.Views
             this.btnMaximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMaximizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMaximizar.Image = ((System.Drawing.Image)(resources.GetObject("btnMaximizar.Image")));
-            this.btnMaximizar.Location = new System.Drawing.Point(1899, 7);
+            this.btnMaximizar.Location = new System.Drawing.Point(1841, 7);
             this.btnMaximizar.Name = "btnMaximizar";
             this.btnMaximizar.Size = new System.Drawing.Size(25, 25);
             this.btnMaximizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -239,7 +240,7 @@ namespace CRUDWinFormsMVP.Views
             this.btnMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimizar.Image")));
-            this.btnMinimizar.Location = new System.Drawing.Point(1853, 7);
+            this.btnMinimizar.Location = new System.Drawing.Point(1795, 7);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(25, 25);
             this.btnMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -252,7 +253,7 @@ namespace CRUDWinFormsMVP.Views
             this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCerrar.Image")));
-            this.btnCerrar.Location = new System.Drawing.Point(1943, 7);
+            this.btnCerrar.Location = new System.Drawing.Point(1885, 7);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(25, 25);
             this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -270,7 +271,7 @@ namespace CRUDWinFormsMVP.Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ClientSize = new System.Drawing.Size(2000, 700);
+            this.ClientSize = new System.Drawing.Size(1942, 700);
             this.Controls.Add(this.panelLateral);
             this.Controls.Add(this.BarraTitulo);
             this.Controls.Add(this.panelContenedor);

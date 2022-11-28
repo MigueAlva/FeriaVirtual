@@ -45,7 +45,8 @@ namespace CRUDWinFormsMVP.Presenters
             }
             else if (emptyValue == true)
             {
-                clientList = repository.GetAll();
+                LoadAllClientList();
+                //clientList = repository.GetAll();
             }
             clientsBindingSource.DataSource = clientList;
         }
@@ -111,13 +112,13 @@ namespace CRUDWinFormsMVP.Presenters
                     repository.Add(model);
                 }
                 view.IsSuccessful = true;
-                SearchClient(model.Email, EventArgs.Empty);
+                LoadAllClientList();
                 CleanviewFields();
             }
             catch (Exception ex)
             {
                 view.IsSuccessful = false;
-                view.Message = ex.Message;
+                //view.Message = ex.Message;
             }
         }
         private void CleanviewFields()
@@ -135,6 +136,7 @@ namespace CRUDWinFormsMVP.Presenters
             view.Street = "";
             view.Url = "";
             view.Observations = "";
+            view.ContractExpiredAt = DateTime.Parse("28-11-2022");
         }
         private void CancelAction(object sender, EventArgs e)
         {

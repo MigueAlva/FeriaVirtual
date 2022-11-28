@@ -64,8 +64,7 @@ namespace CRUDWinFormsMVP.Views
                     tabControl1.TabPages.Remove(tabPageClientDetail);
                     tabControl1.TabPages.Add(tabPageClientList);
                 }
-                MessageBox.Show(Message, "Atención - Feria Virtual", MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation);
+
             };
             //Cancel
             btnCancel.Click += delegate
